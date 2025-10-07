@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: pictogram-backend
+  data:
+    mongodb:
+      uri: ${MONGODB_URL:mongodb://localhost:5001}
+      database: ${MONGODB_DB:pictogramdb}
+      auto-index-creation: true
+
+server:
+  port: ${SERVER_PORT:3001}
+  forward-headers-strategy: framework
+  servlet:
+    context-path: /api
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: when_authorized
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+    tagsSorter: alpha
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+
+app:
+  info:
+    title: Pictogram Builder Backend
+    description: REST API for managing actors, pictograms, templates and assets.
+    version: 0.1.0
